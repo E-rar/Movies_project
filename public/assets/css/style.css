@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    background-color: #202020;
+    font-family: 'Poppins';
+    
+    margin:0;
+    padding:0;
+}
+img{
+    width:100%;
+    height:100%;
+    border-radius:12px;
+}
+.gridContainer{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 5% 10%;
+    gap:4%;
+}
+.imgContainer{
+    height:50vh;
+}
+h4{
+    
+    color:rgba(255, 255, 255, 0.651);
+    font-size:1.3em;
+}
+/*===============================================NAVBAR============================================*/
+nav{
+    background-color:#4F4F4F;
+    width:100%;
+    text-align: center;
+}
+nav ul{
+    list-style:none;
+    display:flex;
+    background-color:#4F4F4F;
+    width:100%;
+
+}
+/* ==================Routing============================================= */
+.pageRouting{
+ margin: 30% 0 2% 0;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+.pageRouting button{
+    border:none;
+}
+.pageRouting button,.pageRouting a{
+    /* background-color: #e5e5e5; */
+    border-radius:3px;
+    margin:0 0.4%;
+} 
+.pageRouting a{
+    text-decoration:none;
+    color:rgb(68, 68, 68);
+    
+}
+.pageButton{
+    width:3em;
+    height:3em;
+    border-radius:3px;
+    background-color: #e5e5e5;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.pageButtonBlue{
+    width:3em;
+    height:3em;
+    border-radius:3px;
+    background-color: #00BBFF;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}

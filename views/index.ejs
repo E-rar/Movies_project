@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <section class="gridContainer">
+    <% movies.forEach(elt => { %>
+     <div>
+         <div class="imgContainer">
+         <img src=<%-`//image.tmdb.org/t/p/w500/${elt.poster_path}`%> alt="">
+        </div>
+         <h4><%-elt.title%></h4>
+     </div>
+    <% }) %>
+    </section>
+    <section class="pageRouting">
+        <% if (page<996&&page>4) { %>
+            <% for( let index = page-4; index < page+4; index++ ) { %>
+                <button>
+                    <% if (page==index) { %>
+                        <a href=<%=`/all/${index}` %>> 
+                            <!-- wenn die seite dem index entspricht soll der button blau gefärbt werden  -->
+                            <div class="pageButtonBlue">
+                            <%= index %>
+                            </div>
+                        </a>
+                    <% }else { %>
+                    
+                     
+                    <a href=<%=`/all/${index}` %>>
+                        <div class="pageButton">
+                        <%= index %>
+                        </div>
+                     </a>
+                     <% } %>
+                </button>
+            <% } %>
+        <% } %> 
+        <% if (page<=4&&page>0) { %>
+            <% for( let index = 1; index < 10; index++ ) { %>
+                <button>
+                    <% if (page==index) { %>
+                        <a href=<%=`/all/${index}` %>>
+                            <div class="pageButtonBlue">
+                            <%= index %>
+                            </div>
+                        </a>
+                    <% }else { %>
+                    
+                     
+                    <a href=<%=`/all/${index}` %>>
+                        <div class="pageButton">
+                        <%= index %>
+                        </div>
+                     </a>
+                     <% } %>
+                </button>
+            <% } %>
+        <% } %> 
+      
+         
+   
+    </section>
+
+</body>
+</html>
+
