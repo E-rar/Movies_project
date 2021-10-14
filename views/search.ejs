@@ -11,6 +11,7 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="genreContainer">
+   
         <a href="/search/28/1" class="genreTag">Action</a>
         <a href="/search/80/1" class="genreTag">Crime</a>
         <a href="/search/35/1" class="genreTag">Comedy</a>
@@ -35,7 +36,7 @@
             <% for( let index = page-4; index < page+4; index++ ) { %>
                 <button>
                     <% if (page==index) { %>
-                        <a href=<%=`/all/${index}` %>> 
+                        <a href=<%=`/search/${genre}/${index}` %>> 
                             <!-- wenn die seite dem index entspricht soll der button blau gefärbt werden  -->
                             <div class="pageButtonBlue">
                             <%= index %>
@@ -44,7 +45,7 @@
                     <% }else { %>
                     
                      
-                    <a href=<%=`/all/${index}` %>>
+                    <a href=<%=`/search/${genre}/${index}` %>>
                         <div class="pageButton">
                         <%= index %>
                         </div>
@@ -57,7 +58,7 @@
             <% for( let index = 1; index < 10; index++ ) { %>
                 <button>
                     <% if (page==index) { %>
-                        <a href=<%=`/all/${index}` %>>
+                        <a href=<%=`/search/${genre}/${index}` %>>
                             <div class="pageButtonBlue">
                             <%= index %>
                             </div>
@@ -65,7 +66,7 @@
                     <% }else { %>
                     
                      
-                    <a href=<%=`/all/${index}` %>>
+                    <a href=<%=`/search/${genre}/${index}` %>>
                         <div class="pageButton">
                         <%= index %>
                         </div>
@@ -81,4 +82,3 @@
 
 </body>
 </html>
-

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Movie Magic</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="hero">
+        <img src=<%-`//image.tmdb.org/t/p/original/${movie.backdrop_path}`%> alt="">
+    </div>
+    <div class="rate">
+        <img src="../assets/img/Vector.svg" alt="">
+        <h5>
+            <span>
+                <%= movie.vote_average %> 
+            </span> /10
+        </h5>
+        <h6>
+            <%= movie.popularity %> 
+        </h6>
+    </div>
+    <section class="content">
+        <h1>
+            <%= movie.title %> 
+        </h1>
+        <ul>
+            <li>
+                <%= movie.release_date %> 
+            </li>
+            <li id="status">
+                <%= movie.status %> 
+            </li>
+        </ul>
+        <div class="genres">
+            <% movie.genres.forEach(elt => { %>
+                <a href=<%= `/search/${elt.id}/1` %> class="genreTag">
+                    <%= elt.name %> 
+                </a>
+                <% }) %>
+        </div>
+        <h2>Plot Summary</h2>
+        <p>
+            <%= movie.overview %> 
+        </p>
+    </section>
+</body>
+</html>
