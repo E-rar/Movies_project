@@ -4,7 +4,7 @@
     background-color: #202020;
     font-family: 'Poppins';
     font-weight: 400;
-    
+    scroll-behavior: smooth;
     margin:0;
     padding:0;
 }
@@ -47,6 +47,12 @@ nav ul{
     width:100%;
 
 }
+nav form{
+    display:flex;
+    background-color:#4F4F4F;
+    align-items:center;
+    justify-content: space-around;
+}
 #logo,#logo a{
     color:white;
     background-color:#4F4F4F;
@@ -59,17 +65,18 @@ nav ul li {
 }
 #input_text{
     border-radius:200px;
-    width:20vw;
+    width:25vw;
     padding:0 2%;
     height:3.5vh;
     border:none;
     color:#fff;
+    margin:0 5%;
 }
 #search_button{
     background-color: #fff;
     border-radius:50px;
     color:#727272;
-    padding: 6% 45%;
+    padding: 1% 5%;
     border:none;
     font-size:1em;
 }

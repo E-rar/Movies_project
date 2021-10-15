@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Magic</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="genreContainer">
+        <a href="/search/28/1" class="genreTag">Action</a>
+        <a href="/search/80/1" class="genreTag">Crime</a>
+        <a href="/search/35/1" class="genreTag">Comedy</a>
+        <a href="/search/18/1" class="genreTag">Drama</a>
+        <a href="/search/27/1" class="genreTag">Horror</a>
+        <a href="/search/10402/1" class="genreTag">Music</a>
+    </div>
+    <section class="gridContainer">
+    <% movies.forEach(elt => { %>
+    <a href=<%= `/detail/${elt.id}` %> >
+     <div>
+         <div class="imgContainer">
+         <img src=<%-`//image.tmdb.org/t/p/w500/${elt.poster_path}`%> alt="">
+        </div>
+         <h4><%-elt.title%></h4>
+     </div>
+    </a>
+    <% }) %>
+    </section>
+    <section class="pageRouting">
+        <% if (page<max&&page>4) { %>
+            <% for( let index = page-4; index < page+4; index++ ) { %>
+                <button>
+                    <% if (page==index) { %>
+                        <a href=<%=`/ursearch/${search}/${index}` %>> 
+                            <!-- wenn die seite dem index entspricht soll der button blau gefärbt werden  -->
+                             <!-- hier an der Max-Page muss noch gearbeitet werden   -->
+                            <div class="pageButtonBlue">
+                            <%= index %>
+                            </div>
+                        </a>
+                    <% }else { %>
+                    
+                     
+                    <a href=<%=`/ursearch/${search}/${index}` %>>
+                        <div class="pageButton">
+                        <%= index %>
+                        </div>
+                     </a>
+                     <% } %>
+                </button>
+            <% } %>
+        <% } %> 
+        <% if (page<=4&&page>0) { %>
+            <% for( let index = 1; index < 10; index++ ) { %>
+                <button>
+                    <% if (page==index) { %>
+                        <a href=<%=`/ursearch/${search}/${index}` %>>
+                            <div class="pageButtonBlue">
+                            <%= index %>
+                            </div>
+                        </a>
+                    <% }else { %>
+                    
+                     
+                    <a href=<%=`/ursearch/${search}/${index}` %>>
+                        <div class="pageButton">
+                        <%= index %>
+                        </div>
+                     </a>
+                     <% } %>
+                </button>
+            <% } %>
+        <% } %> 
+      
+         
+   
+    </section>
+
+</body>
+</html>
