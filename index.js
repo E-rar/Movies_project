@@ -8,10 +8,12 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-const port = process.env.PORT||3000
+const port = process.env.PORT||3050
 app.use(cors())
 
-
+app.get('/',(req,res)=>{
+    res.redirect('/all/1')
+})
 
 app.get('/all/:page', (req, res) => { //All Popular
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=${req.params.page}`)
@@ -70,6 +72,6 @@ app.get('/ursearch/:search/:page', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}/all/1`)
+    console.log(`listening at http://localhost:${port}`)
 })
 
