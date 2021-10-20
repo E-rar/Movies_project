@@ -23,6 +23,18 @@
             <%= movie.popularity %> 
         </h6>
     </div>
+    <div>
+        
+            <a href=<%=`/delete/${movie.id}` %> id="delete">-</a>
+            <h1>Remove from favourite</h1>
+    
+        
+        
+            <a href=<%=`/new/${movie.id}` %> id="update">+</a>
+            <h1>Add to favourite</h1>
+            
+         
+    </div>
     <section class="content">
         <h1>
             <%= movie.title %> 

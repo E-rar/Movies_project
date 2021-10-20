@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express()
 const axios = require('axios');
+const mongoose = require('mongoose')
+const myShows = require('./models/myShows.js')
 var cors = require('cors')
 require('dotenv').config()
+const dbUri = "mongodb+srv://supercode:supercode@supercode.fxgp9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+//==================MIDDLEWARES=====================
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
@@ -71,7 +75,40 @@ app.get('/ursearch/:search/:page', (req, res) => {
         })
 })
 
-app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}`)
+app.get('/myShows',(req,res)=>{ //mySHows
+    myShows.find()
+    .then(results => {
+        console.log(results)
+        res.render('myShows.ejs',{results})
+    })
+    .catch(err => console.log(err))
+})
+//=====================CRUD======================================================
+app.post('/new/:id', (req, res) => { //POST METHOD
+    console.log(req.body)
+    let shows = new myShows(req.body)
+    shows.save()
+        .then(result => res.redirect('/detail/:id'))
+        .catch(err => console.log(err))
+})
+
+//delete
+app.get('/delete/:id', (req, res) => {
+    console.log(req.params.id)
+    // res.send(req.params.id)
+    myShows.findByIdAndDelete(req.params.id)
+        .then(result => {
+            console.log('deleted:', result)
+            res.redirect('/detail/:id')
+        }).catch(err => console.log(err))
+})
+
+//=====================BROWSE THE SERVER WITH MONGOOSE===========================
+
+mongoose.connect(dbUri, () => {
+    console.log('Database is connected')
+    app.listen(port, () => {
+        console.log(`listening at http://localhost:${port}`)
+    })
 })
 
