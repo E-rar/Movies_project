@@ -4,22 +4,30 @@ const Schema = mongoose.Schema;
 //const {Schema}=mongoose
 
 const myShowsSchema = new Schema({
-    artwork_name: {
+    _id:{
+        type:String,
+        required:true,
+    },
+    id: {
         type: String,
         required: true,
     },
-    artwork_url: {
+    poster_path: {
         type: String,
         required: true,
     },
-    artwork_rating: {
-        type: Number,
-        required: false,
+    title: {
+        type: String,
+        required: true,
+    },
+    overview: {
+        type: String,
+        required: true,
     }
 }, { timestamps: true })
 
 // Model based on the Schema
 //=> pluralize : GalleryDb => GalleryDbs
-const myShows = mongoose.model('myShowsDb', myShowsSchema)
+const myShows = mongoose.model('myShowsDB', myShowsSchema)
 
 module.exports = myShows

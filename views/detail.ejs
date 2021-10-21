@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>Movie Magic</title>
 </head>
-<body>
+<body onload="checkFav('<%-movie.id%>')">
     <%- include('./partials/nav.ejs') %>
     <div class="hero">
         <img src=<%-`//image.tmdb.org/t/p/original/${movie.backdrop_path}`%> alt="">
@@ -23,15 +23,36 @@
             <%= movie.popularity %> 
         </h6>
     </div>
+    <%= added %> 
     <div>
         
-            <a href=<%=`/delete/${movie.id}` %> id="delete">-</a>
-            <h1>Remove from favourite</h1>
+            <div id="remove">
+                <a href=<%=`/delete/${movie.id}` %> id="delete" >-</a>
+                <h1>Remove from favourite</h1>
+            </div>
+
+            
+                <div id="add">
+                    <form action="/new" method="POST"> 
+                    <!-- add fav -->
+                    
+                        <input type="hidden" value="<%=movie.id %>" name="_id">
+                        <input type="hidden" value="<%=movie.id %>" name="id">
+                        <input type="hidden" name="poster_path" id="" 
+                        value="<%=movie.poster_path %>">
+                        <input type="hidden" name="title" id="" 
+                        value="<%=movie.title %>">
+                        <input type="hidden" name="overview" id=""  value="<%=movie.overview %>">
+                        <div>
+                        <input type="submit" id="update" value="+" >
+                        </div>
+                    </form>
+                    
+                    <h1>Add to favourite</h1>
+                </div>
+        
+        
     
-        
-        
-            <a href=<%=`/new/${movie.id}` %> id="update">+</a>
-            <h1>Add to favourite</h1>
             
          
     </div>
@@ -59,5 +80,7 @@
             <%= movie.overview %> 
         </p>
     </section>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
+

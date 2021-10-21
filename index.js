@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const myShows = require('./models/myShows.js')
 var cors = require('cors')
 require('dotenv').config()
-const dbUri = "mongodb+srv://supercode:supercode@supercode.fxgp9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const dbUri = `${process.env.MONGODB}`
 //==================MIDDLEWARES=====================
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -38,7 +38,7 @@ app.get('/detail/:id', (req, res) => { //Detail
         .then(function (response) {
             // handle success
             console.log(response.data);
-            res.render('detail.ejs', {movie:response.data})
+            res.render('detail.ejs', {movie:response.data,added:myShows.findById(req.params.id)})
            
         })
         .catch(function (error) {
@@ -84,23 +84,42 @@ app.get('/myShows',(req,res)=>{ //mySHows
     .catch(err => console.log(err))
 })
 //=====================CRUD======================================================
-app.post('/new/:id', (req, res) => { //POST METHOD
+app.post('/new', (req, res) => { //POST METHOD
     console.log(req.body)
     let shows = new myShows(req.body)
     shows.save()
-        .then(result => res.redirect('/detail/:id'))
+        .then(result => res.redirect(`/detail/${req.body.id}`))
         .catch(err => console.log(err))
 })
 
 //delete
 app.get('/delete/:id', (req, res) => {
-    console.log(req.params.id)
+    console.log('delete',req.params.id)
     // res.send(req.params.id)
-    myShows.findByIdAndDelete(req.params.id)
+    // myShows.findByIdAndDelete(req.params.id)
+    myShows.findOneAndRemove({ _id: req.params.id })
         .then(result => {
             console.log('deleted:', result)
-            res.redirect('/detail/:id')
+            res.redirect(`/detail/${req.params.id}`)
         }).catch(err => console.log(err))
+})
+
+//Update
+app.get('/update/:id', (req, res) => {
+    // Quering:Native MongoDb
+    console.log(req.params.id)
+
+    //  Quering:mongoose
+    myShows.findById(req.params.id)
+        .then(result => res.render('update', { result: result }))
+        .catch(err => console.log(err))
+})
+
+app.post('/update', (req, res) => {
+    console.log(req.body)
+    myShows.findByIdAndUpdate(req.body._id, req.body)
+        .then(result => res.redirect(`/details/${req.body.id}`))
+        .catch(err => console.log(err))
 })
 
 //=====================BROWSE THE SERVER WITH MONGOOSE===========================
