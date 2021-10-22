@@ -5,7 +5,9 @@ const mongoose = require('mongoose')
 const myShows = require('./models/myShows.js')
 var cors = require('cors')
 require('dotenv').config()
-const dbUri = `${process.env.MONGODB}`
+// const dbUri = `${process.env.MONGODB}`
+const dbUri = `mongodb+srv://supercode:${process.env.MONGODB_PW}@supercode.fxgp9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+
 //==================MIDDLEWARES=====================
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
