@@ -177,7 +177,7 @@ justify-content: center;
 } 
 /*content*/
 .content{
-    margin:5% 0 0 3%;
+    margin:3% 0 0 3%;
     color:gray;
 }
 .content h1{
@@ -214,7 +214,7 @@ justify-content: center;
 #remove{
     display:flex;
     align-items:center;
-    margin:1% 3%;
+    margin:2% 0 0 3% ;
 }
 #remove h1{
     font-weight:900;
@@ -241,7 +241,7 @@ justify-content: center;
 #add{
     display:flex;
     align-items:center;
-    margin:1% 3%;
+    margin:2% 0 0 3% ;
 }
 #add h1{
     font-weight:900;
@@ -276,6 +276,9 @@ justify-content: center;
     font-weight:900;
     font-size:2.5em;
     color:#fff;
+}
+.myShowContainer{
+    margin-bottom:30%;
 }
 /*=================================OVERLAY==================*/
 

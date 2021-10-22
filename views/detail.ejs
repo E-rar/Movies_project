@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>Movie Magic</title>
 </head>
-<body onload="checkFav('<%-movie.id%>')">
+<body >
     <%- include('./partials/nav.ejs') %>
     <div class="hero">
         <img src=<%-`//image.tmdb.org/t/p/original/${movie.backdrop_path}`%> alt="">
@@ -23,15 +23,11 @@
             <%= movie.popularity %> 
         </h6>
     </div>
-    <%= added %> 
     <div>
         
-            <div id="remove">
-                <a href=<%=`/delete/${movie.id}` %> id="delete" >-</a>
-                <h1>Remove from favourite</h1>
-            </div>
-
             
+
+            <% if(result == null){ %>
                 <div id="add">
                     <form action="/new" method="POST"> 
                     <!-- add fav -->
@@ -50,6 +46,12 @@
                     
                     <h1>Add to favourite</h1>
                 </div>
+                <% } else { %>
+                    <div id="remove">
+                        <a href=<%=`/delete/${movie.id}` %> id="delete" >-</a>
+                        <h1>Remove from favourite</h1>
+                    </div>
+                    <%}%> 
         
         
     

@@ -34,17 +34,20 @@ app.get('/all/:page', (req, res) => { //All Popular
 })
 
 app.get('/detail/:id', (req, res) => { //Detail
-    axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.API_KEY}&language=en-US`)
-        .then(function (response) {
-            // handle success
-            console.log(response.data);
-            res.render('detail.ejs', {movie:response.data,added:myShows.findById(req.params.id)})
-           
+    
+        myShows.findById(req.params.id)
+        .then(result=>{
+            axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.API_KEY}&language=en-US`)
+        
+        .then(function(response){
+
+            res.render('detail.ejs', {movie:response.data,result:result})
         })
         .catch(function (error) {
             // handle error
             console.log(error);
         })
+    })
 })
 
 app.get(`/search/:genre/:page`, (req, res) => { //Kategorie
